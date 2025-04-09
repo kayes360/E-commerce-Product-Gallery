@@ -1,13 +1,9 @@
 "use client";
 
 import React, { useContext } from "react";
-
-import { useState } from "react";
+ 
 import Image from "next/image";
-import {
-  ShoppingCart,
-  Heart,
-  Share2,
+import { 
   Check,
   ArrowLeft,
   CheckIcon,
@@ -20,8 +16,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
- 
-import { ProductsContext, ProductsContextType } from "@/context/ProductContext";
+  
 import { IProduct } from "@/types/product-type";
 import { CartContext, CartContextType } from "@/context/CartContext";
 import { Input } from "./ui/input";
@@ -30,9 +25,7 @@ interface ProductDetailsProps {
   product: IProduct;
 }
 export default function ProductDetails({ product }: ProductDetailsProps) {
-  const { products, setProducts, setOriginalProducts } = useContext(
-    ProductsContext as React.Context<ProductsContextType>
-  );
+  
   const { cartItems, setCartItems } = useContext(
     CartContext
   ) as CartContextType;

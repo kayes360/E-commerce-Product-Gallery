@@ -1,7 +1,7 @@
 import React from 'react'
 import { Sidebar, SidebarContent, SidebarGroup, SidebarGroupContent, SidebarGroupLabel, SidebarMenu, SidebarMenuItem } from './ui/sidebar'
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from './ui/accordion'
-import { CheckboxWithText } from './CheckBoxWithText'
+ 
 import PriceRange from './PriceRange'
 import CategoryList from './CategoryList'
 import StockAvailability from './StockAvailability'

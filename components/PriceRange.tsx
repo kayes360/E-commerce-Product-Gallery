@@ -5,7 +5,7 @@ import { Input } from "./ui/input";
 import { ProductsContext, ProductsContextType } from "@/context/ProductContext";
 
 export default function PriceRange() {
-  const { products, setProducts, originalProducts } = useContext(
+  const {  setProducts, originalProducts } = useContext(
     ProductsContext as React.Context<ProductsContextType>
   );
 

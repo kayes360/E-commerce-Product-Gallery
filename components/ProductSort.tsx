@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useContext, useEffect, useState } from "react";
+import React, {   useEffect, useState } from "react";
 import { DropdownMenuCheckboxItemProps } from "@radix-ui/react-dropdown-menu";
 
 import { Button } from "@/components/ui/button";
@@ -26,7 +26,7 @@ type PriceSortOption = "price_asc" | "price_desc" | null;
 type AlphaSortOption = "alpha_asc" | "alpha_desc" | null;
 
 export function ProductSort() {
-  const { products, setProducts, originalProducts } = React.useContext(
+  const { products, setProducts } = React.useContext(
     ProductsContext as React.Context<ProductsContextType>
   );
 

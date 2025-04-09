@@ -1,7 +1,6 @@
 import React from 'react'
 import ProductSearch from './ProductSearch'
-import ProductCart from './ProductCart'
-import { ProductSort } from './ProductSort'
+import ProductCart from './ProductCart' 
 
 export default function Header() {
   return (

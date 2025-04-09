@@ -1,11 +1,10 @@
 "use client";
 import React, { useContext, useEffect, useState } from "react";
-import { CheckboxWithText } from "./CheckBoxWithText";
-import { IProduct } from "@/types/product-type"; 
+import { CheckboxWithText } from "./CheckBoxWithText"; 
 import { ProductsContext, ProductsContextType } from "@/context/ProductContext";
 
 export default function CategoryList() {
-      const { products, setProducts, originalProducts, setOriginalProducts } = useContext(ProductsContext as React.Context<ProductsContextType>);  
+      const {  setProducts, originalProducts } = useContext(ProductsContext as React.Context<ProductsContextType>);  
 
   const allUniqueCategory = [
     ...new Set(originalProducts.map((product) => product.category)),

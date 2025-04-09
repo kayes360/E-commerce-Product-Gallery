@@ -4,7 +4,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { CheckboxWithText } from "./CheckBoxWithText";
 
 export default function StockAvailability() {
-  const { products, setProducts, originalProducts, setOriginalProducts } =
+  const { products, setProducts, originalProducts    } =
     useContext(ProductsContext as React.Context<ProductsContextType>);
     const [showInStockOnly, setShowInStockOnly] = useState<boolean>(false);
 

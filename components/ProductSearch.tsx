@@ -12,7 +12,7 @@ import { ProductsContext, ProductsContextType } from "@/context/ProductContext"
 import Link from "next/link"
 
 export default function ProductSearch() {
-  const { products, setProducts, setOriginalProducts } = useContext(ProductsContext as React.Context<ProductsContextType>);
+  const { products } = useContext(ProductsContext as React.Context<ProductsContextType>);
   const [searchQuery, setSearchQuery] = useState("")
   const [searchResults, setSearchResults] = useState<IProduct[]>([])
   const [isOpen, setIsOpen] = useState(false)

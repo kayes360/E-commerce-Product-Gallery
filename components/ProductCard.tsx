@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
-import { CheckIcon, HeartIcon, PackageX, PlusIcon } from "lucide-react";
+import { CheckIcon,  PackageX, PlusIcon } from "lucide-react";
 import { IProduct } from "@/types/product-type";
 import { Badge } from "./ui/badge";
 import { useContext } from "react";
