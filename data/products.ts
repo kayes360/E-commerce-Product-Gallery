@@ -3,7 +3,7 @@ export const products: IProduct[]=[
     {
       "id": "1",
       "name": "Premium Leather Wallet",
-      "description": "Handcrafted genuine leather wallet with multiple card slots and RFID protection",
+      "description": "Handcrafted genuine leather wallet with multiple card slots and RFID protection from HuluLulu",
       "price": 49.99,
       "category": "accessories",
       "image": "/images/leather-wallet.jpg",
@@ -12,7 +12,7 @@ export const products: IProduct[]=[
     {
       "id": "2",
       "name": "Wireless Bluetooth Headphones",
-      "description": "Noise-cancelling over-ear headphones with 30-hour battery life",
+      "description": "Noise-cancelling over-ear headphones with 30-hour battery life from HuluLulu",
       "price": 129.99,
       "category": "electronics",
       "image": "/images/bluetooth-headphones.jpg",
@@ -21,7 +21,7 @@ export const products: IProduct[]=[
     {
       "id": "3",
       "name": "Ceramic Coffee Mug Set",
-      "description": "Set of 4 handmade ceramic coffee mugs in assorted colors",
+      "description": "Set of 4 handmade ceramic coffee mugs in assorted colors from HuluLulu",
       "price": 24.95,
       "category": "kitchenware",
       "image": "/images/ceramic-mugs.jpg",
