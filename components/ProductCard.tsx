@@ -20,33 +20,32 @@ export default function ProductCard({ product }: ProductCardProps) {
       };
 
   return (
-    <div className="border rounded-md p-4   relative">
-      <figure className="">
+    <div className="border rounded-md p-4 flex flex-col h-full">
+      <figure className="flex-shrink-0">
         <Image
           className="w-full rounded-lg aspect-square object-cover"
           src={product.image}
           width={300}
-          height={500}
+          height={300}
           alt={product.name}
         />
       </figure>
-      <div className="flex justify-between">
-        <h3 className="text-lg my-3">
-          <span aria-hidden="true" className="absolute inset-0" />
+      <div className="flex justify-between mt-3">
+        <h3 className="text-lg">
           {product.name}
         </h3>
       </div>
-      <div className="flex justify-between mb-3">
+      <div className="flex justify-between mb-3 mt-1">
         <div>
           <Badge className="capitalize">{product.category}</Badge>
         </div>
         <p className="text-lg font-semibold">${product.price}</p>
       </div>
 
-      <p className="text-sm text-muted-foreground mb-3">
+      <p className="text-sm text-muted-foreground mb-3  flex-grow">
         {product.description}
       </p>
-      <div className="flex gap-4">
+      <div className="flex gap-4 mt-auto">
         {product.inStock ? (
           <Button
           variant={isInCart ? "secondary" : "outline"}

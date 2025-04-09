@@ -1,5 +1,6 @@
 import ProductCart from "@/components/ProductCart";
 import ProductGrid from "@/components/ProductGrid";
+import ProductSearch from "@/components/ProductSearch";
 import { ProductSort } from "@/components/ProductSort";
 import { IProduct } from "@/types/product-type";
 
@@ -10,6 +11,7 @@ export default async function Home() {
   return (
     <>
       <div className="flex gap-2 justify-end m-5 ">
+        <ProductSearch/>
         <ProductSort />
         <ProductCart />
       </div>

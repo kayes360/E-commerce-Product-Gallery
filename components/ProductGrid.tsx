@@ -14,7 +14,7 @@ export default function ProductGrid({ productList }: ProductGridProps) {
     setOriginalProducts(productList)
   }, [productList, setProducts]);
   return (
-    <div className="border grid grid-cols-[repeat(auto-fit,_300px)] gap-4 m-4 ">
+    <div className="  grid grid-cols-[repeat(auto-fit,_300px)] gap-4 m-4 ">
       {products && products.length > 0 ? (
         products.map((product) => (
           <div className="w-[300px]  " key={product.id}>
