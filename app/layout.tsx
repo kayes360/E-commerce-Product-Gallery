@@ -7,6 +7,7 @@ import ProductProvider from "@/ContextProvider/ProductsProvider";
 import { ProductSort } from "@/components/ProductSort";
 import ProductCart from "@/components/ProductCart";
 import CartProvider from "@/ContextProvider/CartProvider";
+import Header from "@/components/Header";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -32,18 +33,13 @@ export default function RootLayout({
     <html lang="en">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        <SidebarProvider>
+      > 
           <ProductProvider>
-            <CartProvider>
-              <AppSidebar />
-              <div className="w-full">
-                <SidebarTrigger className="z-1 relative cursor-pointer" />
-                {children}
-              </div>
+            <CartProvider> 
+                <Header/>
+                {children} 
             </CartProvider>
-          </ProductProvider>
-        </SidebarProvider>
+          </ProductProvider> 
       </body>
     </html>
   );

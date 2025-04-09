@@ -1,4 +1,4 @@
-'use client'
+"use client";
 import React, { useContext, useState } from "react";
 import { Button } from "./ui/button";
 import { ShoppingCart, X } from "lucide-react";
@@ -19,25 +19,32 @@ import { CartContext, CartContextType } from "@/context/CartContext";
 import Image from "next/image";
 
 export default function ProductCart() {
-  const { cartItems, setCartItems } = useContext(CartContext) as CartContextType;
+  const { cartItems, setCartItems } = useContext(
+    CartContext
+  ) as CartContextType;
   const [couponCode, setCouponCode] = useState("");
   const [appliedCoupon, setAppliedCoupon] = useState("");
   const [discountAmount, setDiscountAmount] = useState(0);
 
-  const subtotal = cartItems.reduce((acc, item) => acc + item.price * (item.quantity || 1), 0);
+  const subtotal = cartItems.reduce(
+    (acc, item) => acc + item.price * (item.quantity || 1),
+    0
+  );
   const discountPercentage = 5;
 
   const orderTotal = subtotal - discountAmount;
 
   const handleQuantityChange = (id: string, newQuantity: number) => {
     if (newQuantity < 1) newQuantity = 1;
-    setCartItems(cartItems.map(item =>
-      item.id === id ? { ...item, quantity: newQuantity } : item
-    ));
+    setCartItems(
+      cartItems.map((item) =>
+        item.id === id ? { ...item, quantity: newQuantity } : item
+      )
+    );
   };
 
   const handleRemoveItem = (id: string) => {
-    setCartItems(cartItems.filter(item => item.id !== id));
+    setCartItems(cartItems.filter((item) => item.id !== id));
   };
 
   const applyCoupon = () => {
@@ -74,9 +81,11 @@ export default function ProductCart() {
         <SheetContent className="w-full sm:max-w-md flex flex-col h-full overflow-hidden p-0">
           <SheetHeader className="p-4 pb-0">
             <SheetTitle>Your Cart</SheetTitle>
-            <SheetDescription>Type COUPON2025 to have 5% discount</SheetDescription>
+            <SheetDescription>
+              Type COUPON2025 to have 5% discount
+            </SheetDescription>
           </SheetHeader>
-          
+
           {/* Cart Items - Scrollable Area */}
           <div className="flex-1 overflow-y-auto p-4 pt-2">
             <div className="space-y-4">
@@ -93,9 +102,15 @@ export default function ProductCart() {
                         />
                       </div>
                       <div className="flex-1 min-w-0">
-                        <h3 className="font-medium text-sm sm:text-base truncate">{item.name}</h3>
-                        <p className="text-xs sm:text-sm text-gray-500 line-clamp-1">{item.description}</p>
-                        <p className="font-medium mt-1">${item.price.toFixed(2)}</p>
+                        <h3 className="font-medium text-sm sm:text-base truncate">
+                          {item.name}
+                        </h3>
+                        <p className="text-xs sm:text-sm text-gray-500 line-clamp-1">
+                          {item.description}
+                        </p>
+                        <p className="font-medium mt-1">
+                          ${item.price.toFixed(2)}
+                        </p>
                         <div className="mt-1">
                           <Badge
                             variant="outline"
@@ -116,13 +131,18 @@ export default function ProductCart() {
                           min="1"
                           max="99"
                           value={item.quantity || 1}
-                          onChange={(e) => handleQuantityChange(item.id, parseInt(e.target.value) || 1)}
+                          onChange={(e) =>
+                            handleQuantityChange(
+                              item.id,
+                              parseInt(e.target.value) || 1
+                            )
+                          }
                           className="w-14 h-9 text-center text-sm p-1"
                         />
-                        <Button 
-                          variant="ghost" 
-                          size="icon" 
-                          className="h-8 w-8 cursor-pointer" 
+                        <Button
+                          variant="ghost"
+                          size="icon"
+                          className="h-8 w-8 cursor-pointer"
                           onClick={() => handleRemoveItem(item.id)}
                           aria-label="Remove item"
                         >
@@ -139,7 +159,7 @@ export default function ProductCart() {
               )}
             </div>
           </div>
-          
+
           {/* Bottom Section - Fixed */}
           <div className="border-t bg-white p-4">
             <div className="space-y-4">
@@ -151,10 +171,17 @@ export default function ProductCart() {
                   value={couponCode}
                   onChange={(e) => setCouponCode(e.target.value)}
                 />
-                <Button onClick={applyCoupon} className="cursor-pointer whitespace-nowrap">Apply</Button>
+                <Button
+                  onClick={applyCoupon}
+                  className="cursor-pointer whitespace-nowrap"
+                >
+                  Apply
+                </Button>
               </div>
               {appliedCoupon && (
-                <p className="text-green-600 text-sm">Coupon Applied: {appliedCoupon}</p>
+                <p className="text-green-600 text-sm">
+                  Coupon Applied: {appliedCoupon}
+                </p>
               )}
 
               {/* Summary */}
@@ -171,7 +198,9 @@ export default function ProductCart() {
                         ?
                       </span>
                     </div>
-                    <span className="font-medium text-green-600">-${discountAmount.toFixed(2)}</span>
+                    <span className="font-medium text-green-600">
+                      -${discountAmount.toFixed(2)}
+                    </span>
                   </div>
                 )}
                 <Separator />
@@ -180,7 +209,7 @@ export default function ProductCart() {
                   <span>${orderTotal.toFixed(2)}</span>
                 </div>
               </div>
-              
+
               <SheetFooter className="pt-2">
                 <SheetClose asChild>
                   <Button className="w-full py-6 text-base cursor-pointer">

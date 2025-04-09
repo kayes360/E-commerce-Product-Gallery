@@ -1,7 +1,9 @@
+import AppSidebar from "@/components/AppSidebar";
 import ProductCart from "@/components/ProductCart";
 import ProductGrid from "@/components/ProductGrid";
 import ProductSearch from "@/components/ProductSearch";
 import { ProductSort } from "@/components/ProductSort";
+import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { IProduct } from "@/types/product-type";
 
 export default async function Home() {
@@ -10,12 +12,14 @@ export default async function Home() {
 
   return (
     <>
-      <div className="flex gap-2 justify-end m-5 ">
-        <ProductSearch/>
-        <ProductSort />
-        <ProductCart />
-      </div>
-      <ProductGrid productList={productList} />
+      <SidebarProvider>
+        <AppSidebar />
+        <div className="w-full p-5">
+          <SidebarTrigger className="z-1 relative cursor-pointer" />
+         
+          <ProductGrid productList={productList} />
+        </div>
+      </SidebarProvider>
     </>
   );
 }

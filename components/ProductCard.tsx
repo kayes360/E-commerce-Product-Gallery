@@ -13,14 +13,17 @@ interface ProductCardProps {
 export default function ProductCard({ product }: ProductCardProps) {
     const { cartItems, setCartItems } = useContext(CartContext) as CartContextType;
     const isInCart = cartItems.some(item => item.id === product.id);
-    const handleAddToCart = () => {
+    const handleAddToCart = (e: React.MouseEvent) => {
+        // avoid link navigation while adding to cart
+        e.preventDefault();
+        e.stopPropagation();
         if (!isInCart) {
           setCartItems([...cartItems, { ...product, quantity: 1 }]);
         }
       };
 
   return (
-    <div className="border rounded-md p-4 flex flex-col h-full">
+    <Link href={`${product.id}`} className="border rounded-md p-4 flex flex-col h-full">
       <figure className="flex-shrink-0">
         <Image
           className="w-full rounded-lg aspect-square object-cover"
@@ -72,6 +75,6 @@ export default function ProductCard({ product }: ProductCardProps) {
           </>
         )}
       </div>
-    </div>
+    </Link>
   );
 }

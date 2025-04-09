@@ -73,7 +73,7 @@ export function ProductSort() {
   };
 
   return (
-    <DropdownMenu>
+    <DropdownMenu >
       <DropdownMenuTrigger asChild>
         <Button variant="outline" className="z-10 relative cursor-pointer">
           <ListFilter className="mr-2 h-4 w-4" />

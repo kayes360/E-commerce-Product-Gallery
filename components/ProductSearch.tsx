@@ -2,13 +2,14 @@
 
 import type React from "react"
 
-import { useState, useRef, useEffect, useContext } from "react"
+import { useState, useRef, useEffect, useContext, useCallback } from "react"
 import { Search } from "lucide-react"
 import { Input } from "@/components/ui/input"
 import type { IProduct } from "@/types/product-type"
 import { useRouter } from "next/navigation"
 import Image from "next/image"
 import { ProductsContext, ProductsContextType } from "@/context/ProductContext"
+import Link from "next/link"
 
 export default function ProductSearch() {
   const { products, setProducts, setOriginalProducts } = useContext(ProductsContext as React.Context<ProductsContextType>);
@@ -17,6 +18,7 @@ export default function ProductSearch() {
   const [isOpen, setIsOpen] = useState(false)
   const router = useRouter()
   const searchRef = useRef<HTMLDivElement>(null)
+  const debounceTimerRef = useRef<NodeJS.Timeout | null>(null)
 
   // Handle outside clicks to close dropdown
   useEffect(() => {
@@ -32,7 +34,7 @@ export default function ProductSearch() {
     }
   }, [])
 
-  const handleSearch = (query: string) => {
+  const handleSearch = useCallback((query: string) => {
     if (!query) {
       setSearchResults([]);
       return;
@@ -42,14 +44,36 @@ export default function ProductSearch() {
       product.name.toLowerCase().includes(query.toLowerCase())
     );
     setSearchResults(filteredProducts);
+  }, [products]);
+
+  // Debounced search function
+  const debouncedSearch = (query: string) => {
+    // Clear any existing timer
+    if (debounceTimerRef.current) {
+      clearTimeout(debounceTimerRef.current);
+    }
+
+    // Set a new timer
+    debounceTimerRef.current = setTimeout(() => {
+      handleSearch(query);
+    }, 300); // 300ms delay
   };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value
-    setSearchQuery(value)
-    handleSearch(value)
-    setIsOpen(value.length > 0)
+    const value = e.target.value;
+    setSearchQuery(value);
+    setIsOpen(value.length > 0);
+    debouncedSearch(value);
   };
+
+  // Clear the timeout when the component unmounts
+  useEffect(() => {
+    return () => {
+      if (debounceTimerRef.current) {
+        clearTimeout(debounceTimerRef.current);
+      }
+    };
+  }, []);
 
   const handleSelectProduct = (productId: string) => {
     const selectedProduct = products.find((product) => product.id === productId);
@@ -62,7 +86,7 @@ export default function ProductSearch() {
   };
 
   return (
-    <div className="relative w-full max-w-sm" ref={searchRef}>
+    <div className="relative w-full max-w-sm z-50 " ref={searchRef}>
       <div className="relative">
         <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
         <Input
@@ -79,7 +103,8 @@ export default function ProductSearch() {
         <div className="absolute z-10 w-full mt-1 bg-background border rounded-md shadow-lg max-h-60 overflow-auto">
           <div className="py-1">
             {searchResults.map((product) => (
-              <div
+              <Link
+              href={`${product.id}`}
                 key={product.id}
                 className="px-4 py-2 hover:bg-muted cursor-pointer flex items-center"
                 onClick={() => handleSelectProduct(product.id)}
@@ -101,7 +126,7 @@ export default function ProductSearch() {
                     ${typeof product.price === "number" ? product.price.toFixed(2) : product.price}
                   </p>
                 </div>
-              </div>
+              </Link>
             ))}
           </div>
         </div>
