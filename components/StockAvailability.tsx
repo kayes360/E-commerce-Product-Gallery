@@ -4,14 +4,14 @@ import React, { useContext, useEffect, useState } from "react";
 import { CheckboxWithText } from "./CheckBoxWithText";
 
 export default function StockAvailability() {
-  const { products, setProducts, originalProducts    } =
+  const {  setProducts, originalProducts    } =
     useContext(ProductsContext as React.Context<ProductsContextType>);
     const [showInStockOnly, setShowInStockOnly] = useState<boolean>(false);
 
     useEffect(() => {
         if (showInStockOnly) {
           // Filter to show only in-stock products
-          const filteredProducts = products.filter(product => product.inStock);
+          const filteredProducts = originalProducts.filter(product => product.inStock);
           setProducts(filteredProducts);
         } else {
           // Show all products

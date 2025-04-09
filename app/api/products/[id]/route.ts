@@ -1,22 +1,21 @@
-// app/api/products/[id]/route.ts
 import { products } from "@/data/products";
 import { NextResponse } from "next/server";
 
 export async function GET(
-  request: Request, 
-  { params }: { params: { id: string } }
+  request: Request,
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
-    const productId = params.id;
-    const product = products.find(p => p.id === productId);
-    
+    const { id } = await params;
+    const product = products.find((p) => p.id === id);
+
     if (!product) {
       return NextResponse.json(
         { message: "Product not found" },
         { status: 404 }
       );
     }
-    
+
     return NextResponse.json(product);
   } catch (error) {
     console.error("Error in single product API route:", error);

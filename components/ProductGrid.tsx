@@ -13,7 +13,7 @@ export default function ProductGrid({ productList }: ProductGridProps) {
   useEffect(() => {
     setProducts(productList);
     setOriginalProducts(productList)
-  }, [productList, setProducts]);
+  }, [productList, setProducts,setOriginalProducts]);
   return (
 
     <>

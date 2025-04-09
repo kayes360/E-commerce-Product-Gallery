@@ -1,7 +1,6 @@
 "use client";
 
-import React, {   useEffect, useState } from "react";
-import { DropdownMenuCheckboxItemProps } from "@radix-ui/react-dropdown-menu";
+import React, {   useEffect, useState } from "react"; 
 
 import { Button } from "@/components/ui/button";
 import {
@@ -19,14 +18,13 @@ import {
   ListFilter,
 } from "lucide-react";
 import { ProductsContext, ProductsContextType } from "@/context/ProductContext";
-
-type Checked = DropdownMenuCheckboxItemProps["checked"];
+ 
 
 type PriceSortOption = "price_asc" | "price_desc" | null;
 type AlphaSortOption = "alpha_asc" | "alpha_desc" | null;
 
 export function ProductSort() {
-  const { products, setProducts } = React.useContext(
+  const { originalProducts, setProducts } = React.useContext(
     ProductsContext as React.Context<ProductsContextType>
   );
 
@@ -35,7 +33,7 @@ export function ProductSort() {
 
   // Apply sorting whenever sort options change
   useEffect(() => {
-    let sortedProducts = [...products];
+    const sortedProducts = [...originalProducts];
 
     // F alphabetical sorting if selected
     if (alphaSort === "alpha_asc") {
@@ -52,7 +50,7 @@ export function ProductSort() {
     }
 
     setProducts(sortedProducts);
-  }, [priceSort, alphaSort, setProducts]);
+  }, [priceSort, alphaSort, setProducts,originalProducts]);
 
   const handlePriceSortChange = (option: PriceSortOption) => {
     // Toggle off if already selected

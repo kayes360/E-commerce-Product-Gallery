@@ -3,10 +3,13 @@ import ProductGrid from "@/components/ProductGrid";
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { IProduct } from "@/types/product-type";
 
+const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3000";
 export default async function Home() {
   try {
-    const res = await fetch("http://localhost:3000/api/products");
-
+    const res = await fetch(`${API_URL}/api/products`, { 
+        // Add this to make it work during build time
+        cache: 'force-cache' 
+      });
     if (!res.ok) {
       throw new Error("Failed to fetch product list");
     }
