@@ -20,8 +20,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
-
-import QuantitySelector from "@/components/QuantitySelector";
+ 
 import { ProductsContext, ProductsContextType } from "@/context/ProductContext";
 import { IProduct } from "@/types/product-type";
 import { CartContext, CartContextType } from "@/context/CartContext";
@@ -104,8 +103,8 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
 
             <h1 className="mb-2 text-3xl font-bold">{product.name}</h1>
             <p className="mb-6 text-xl font-semibold">
-              ${product.price.toFixed(2)}
-            </p>
+  {product?.price !== undefined ? `$${product.price.toFixed(2)}` : "Price not available"}
+</p>
 
             <p className="mb-6 text-muted-foreground">{product.description}</p>
 

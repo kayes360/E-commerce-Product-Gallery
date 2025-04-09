@@ -1,14 +1,23 @@
 import ProductDetails from "@/components/ProductDetails";
-import { IProduct } from "@/types/product-type";
+import { notFound } from "next/navigation";
 
 export default async function ProductDetail({
   params,
 }: {
-  params: Promise<{ id: string }>;
+  params: { id: string };
 }) {
-  const { id } = await params;
-    const data = await fetch(`http://localhost:3000/api/products/${id}`);
-    const singleProduct: IProduct = await data.json();
+  const { id } = params;
 
-  return <ProductDetails product={singleProduct} />;
+  const res = await fetch(`http://localhost:3000/api/products/${id}`);
+
+  if (res.status === 404) {
+    notFound();
+  }
+
+  if (!res.ok) {
+    throw new Error("Something went wrong");
+  }
+
+  const product = await res.json();
+  return <ProductDetails product={product} />;
 }
