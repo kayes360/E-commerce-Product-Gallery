@@ -1,10 +1,12 @@
 import ProductDetails from "@/components/ProductDetails";
 import { notFound } from "next/navigation";
 
+const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3000";
 export default async function ProductDetail({params}:{params:Promise<{id:string}>}) {
   const { id } = await params;
 
-  const res = await fetch(`http://localhost:3000/api/products/${id}`);
+  const res = await fetch(`${API_URL}/api/products/${id}`);
+ 
 
   if (res.status === 404) {
     notFound();

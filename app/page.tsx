@@ -6,8 +6,7 @@ import { IProduct } from "@/types/product-type";
 const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3000";
 export default async function Home() {
   try {
-    const res = await fetch(`${API_URL}/api/products`, { 
-        // Add this to make it work during build time
+    const res = await fetch(`${API_URL}/api/products`, {  
         cache: 'force-cache' 
       });
     if (!res.ok) {
