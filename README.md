@@ -1,4 +1,4 @@
-# 🛒 E-commerce Product Gallery [Frontend Assessment]
+# 🛒 E-commerce Product Gallery [Talent Assessment]
 
 This is a responsive e-commerce product gallery application built with **Next.js** and **TypeScript**, featuring filtering, sorting, and shopping cart functionality. Developed as part of a frontend developer assessment.
 ## 🚀 Github Link 
