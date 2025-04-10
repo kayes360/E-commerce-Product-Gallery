@@ -12,7 +12,7 @@ export default function AppSidebar() {
       <SidebarContent>
         <SidebarGroup>
           <SidebarGroupLabel className="text-3xl font-bold">
-            Product List
+          E-commerce Product Gallery
           </SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
